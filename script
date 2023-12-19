@@ -1,0 +1,36 @@
+// custom-script.js
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Show the loading dialog
+    showLoadingDialog();
+
+    // Execute reCAPTCHA v3 verification
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LeeGjYpAAAAAJKZR1PVzLb7w34z3F07prFg3pt6', { action: 'verify' })
+            .then(function (token) {
+                // Send the token to your server for verification
+                // You'll need a server-side component to verify the token
+
+                // If the verification is successful, hide the loading dialog
+                hideLoadingDialog();
+            });
+    });
+});
+
+function showLoadingDialog() {
+    // Create a modal dialog for loading
+    var modal = document.createElement('div');
+    modal.innerHTML = `
+        <div id="loading-dialog" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 1000; justify-content: center; align-items: center;">
+            <div style="text-align: center;">
+                <p>Please wait while we're checking whether this request is a bot or not...</p>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function hideLoadingDialog() {
+    // Hide the loading dialog
+    document.getElementById('loading-dialog').style.display = 'none';
+}
