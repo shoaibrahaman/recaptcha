@@ -1,18 +1,21 @@
 // custom-script.js
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Always show the loading dialog
+    // Show the loading dialog
     showLoadingDialog();
 
     // Execute reCAPTCHA v3 verification
     grecaptcha.ready(function () {
         grecaptcha.execute('6LeeGjYpAAAAAJKZR1PVzLb7w34z3F07prFg3pt6', { action: 'verify' })
             .then(function (token) {
-                // Send the token to your server for verification
-                // You'll need a server-side component to verify the token
+                // Simulate a delay to ensure the loading dialog is visible for a moment
+                setTimeout(function () {
+                    // Send the token to your server for verification
+                    // You'll need a server-side component to verify the token
 
-                // If the verification is successful, hide the loading dialog
-                hideLoadingDialog();
+                    // If the verification is successful, hide the loading dialog
+                    hideLoadingDialog();
+                }, 2000); // Adjust the delay time as needed
             });
     });
 });
@@ -32,5 +35,8 @@ function showLoadingDialog() {
 
 function hideLoadingDialog() {
     // Hide the loading dialog
-    document.getElementById('loading-dialog').style.display = 'none';
+    var loadingDialog = document.getElementById('loading-dialog');
+    if (loadingDialog) {
+        loadingDialog.style.display = 'none';
+    }
 }
