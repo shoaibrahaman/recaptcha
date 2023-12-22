@@ -1,7 +1,7 @@
 // custom-script.js
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Show the loading dialog
+    // Always show the loading dialog
     showLoadingDialog();
 
     // Execute reCAPTCHA v3 verification
